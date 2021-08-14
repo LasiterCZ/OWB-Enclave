@@ -4385,39 +4385,40 @@ focus = {#Legion Border
 			clr_country_flag = ncr_suspicious # removes hiding mechanic
 		}
 	}
-	focus = {#NEVADA - area 51
-		id = enc_Area_51
-		icon = GFX_goal_enc_verti_nevada
-		ai_will_do = {
-			factor = 1
-		}
-		relative_position_id = enc_the_state_of_nevada
-		x = 5
-		y = 1
-		cost = 40
-		prerequisite = {
-			focus = enc_the_state_of_nevada
-		}
-		available = {
-			has_full_control_of_state = 389
-		}
-		completion_reward = {
-			389 = {
-				add_extra_state_shared_building_slots = 4
-				add_building_construction = {
-					type = arms_factory
-					level = 3
-					instant_build = yes
-				}
-			}
-			add_resource = {
-				type = circuitry amount = 15 state = 389
-			}
-			add_resource = {
-				type = advanced amount = 16 state = 389
-			}
-		}
-	}
+focus = {#NEVADA - area 51
+        id = enc_Area_51
+        icon = GFX_goal_enc_verti_nevada
+        ai_will_do = {
+            factor = 1
+        }
+        relative_position_id = enc_the_state_of_nevada
+        x = 5
+        y = 1
+        cost = 40
+        prerequisite = {
+            focus = enc_the_state_of_nevada
+        }
+        available = {
+            has_full_control_of_state = 389
+        }
+        completion_reward = {
+            every_other_country = {
+                limit = {
+                    has_full_control_of_state = 389 # Area 51
+                }
+                ERB = {
+                    create_wargoal = { type = annex_everything target = PREV }
+                }
+                if = {
+                    limit = {
+                        is_in_faction = yes
+                    }
+                    leave_faction = yes
+                }
+                set_rule = { can_join_factions = no }
+            }
+        }
+    }
 	focus = {#NEVADA - area 52
 		id = enc_Area_52
 		icon = GFX_goal_enc_area_52
@@ -4435,9 +4436,22 @@ focus = {#Legion Border
 			has_full_control_of_state = 389
 		}
 		completion_reward = {
+			add_resource = {
+                type = circuitry amount = 15 state = 389
+            }
+            add_resource = {
+                type = advanced amount = 16 state = 389
+            }
 			set_technology = { 
 				high_fighter_tech  = 1
 				air_tech_level_scientific = 1 
+					389 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
 			}
 		}
 	}
