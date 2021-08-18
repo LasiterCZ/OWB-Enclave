@@ -5235,7 +5235,7 @@ focus = {#NEVADA - second city
 	}
 
 
-	focus = {#NEVADA- the state of Utah
+	focus = {#NEVADA- Create Utah Reclamation Zone
 		id = enc_the_state_of_utah
 		icon = GFX_goal_NCN_Kingdom_of_God
 		ai_will_do = { factor = 1 }
@@ -5246,75 +5246,87 @@ focus = {#NEVADA - second city
 		prerequisite = { focus = enc_the_american_alliance }
 		completion_reward = {
 			hidden_effect = {
+			set_cosmetic_tag = NCN_deseret	
 
-				all_state = {
+				every_state = {
 					limit = {
 						AND = {
 							OR = {
 								is_core_of = NOE
 								is_core_of = PSH 
-								is_core_of = WHY
 								is_core_of = CLK
 								is_core_of = TAR
 								is_core_of = CRZ
 								is_core_of = UIN
 								is_core_of = NCN
 								is_core_of = HAM
-								is_core_of = LON
 								is_core_of = DEA
+								is_core_of = PSH
+								is_core_of = LON
+								is_core_of = WHT
 							}
 							NOT = {
 								is_core_of = ERB
 							}
 						}
 					}
-					add_core_of = WED
+					add_core_of = WEN
 				}
-				WED = {
-					remove_state_core = 72
-					remove_state_core = 361
+
+				every_state = {
+					limit = {
+						AND = {
+							OR = {
+								is_core_of = ERB
+								state = 72
+								state = 456
+								state = 611
+							}
+						}
 					}
-					
+					remove_core_of = WEN
+				}
+								
 				if = {
 					limit = {
 						has_full_control_of_state = 478
 					}
-					release = WED
+					release = WEN
 				}
 
 				any_allied_country = {
 					limit = {
 						has_full_control_of_state = 478
 					}
-					release = WED
+					release = WEN
 				}
 
 				# add Utah to faction
-				WED = {
+				WEN = {
 					if = { 
 						limit = { is_in_faction = yes }
 						leave_faction = yes 
 					}
 				}
-				add_to_faction = WED
+				add_to_faction = WEN
 
-				WED = {
+				WEN = {
 					add_ai_strategy = {
 						type = alliance
 						id = "ERB"
 						value = 200
 					}
-					WED = { set_cosmetic_tag = ERB_PHR } 
+					WEN = { set_cosmetic_tag = ERB_WEN } 
 				}
-				WED = { 
+				WEN = { 
 					add_to_tech_sharing_group = Benjamin_Franklin_Society
 				}
 
 				every_owned_state = {
 					limit = {
-						is_core_of = WED
+						is_core_of = WEN
 					}
-					WED = {
+					WEN = {
 						transfer_state = THIS
 					}
 				}
@@ -5322,9 +5334,9 @@ focus = {#NEVADA - second city
 				any_allied_country = {
 					every_owned_state = {
 						limit = {
-							is_core_of = WED
+							is_core_of = WEN
 						}
-						WED = {
+						WEN = {
 							transfer_state = THIS
 						}
 					}
